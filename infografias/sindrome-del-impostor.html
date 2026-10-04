@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Síndrome del impostor · Lánzate</title>
+<style>
+  :root{
+    --blue:#0090C0;      /* azul claro del logo FSMLR */
+    --navy:#006088;      /* azul oscuro del logo FSMLR */
+    --ink:#0B2F44;       /* texto */
+    --bg:#F5FAFD;        /* blanco azulado, como el informe de referencia */
+    --tint:#DCEEF6;
+    --line:#BBD9E8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1080px;background:var(--bg);color:var(--ink);
+       font-family:"Montserrat","Poppins","Liberation Sans",Arial,sans-serif;line-height:1.45}
+  .page{position:relative;overflow:hidden;padding:56px 64px 40px}
+
+  /* cabecera */
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+  .top img{height:64px}
+  .tag{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+       color:#fff;background:var(--navy);padding:9px 20px;border-radius:99px}
+
+  /* título + marca de agua */
+  .hero{position:relative;margin-bottom:30px}
+  .wm{position:absolute;right:-30px;top:-34px;font-size:190px;font-weight:800;color:var(--tint);
+      letter-spacing:-.02em;line-height:1;z-index:0;white-space:nowrap}
+  h1{position:relative;z-index:1;font-size:74px;line-height:1.0;font-weight:800;color:var(--navy);
+     text-transform:uppercase;letter-spacing:-.01em}
+  h1 span{color:var(--blue)}
+  .rule{position:relative;z-index:1;height:3px;width:100%;background:var(--navy);margin:20px 0 18px}
+  .lead{position:relative;z-index:1;font-size:21px;max-width:830px}
+  .lead b{color:var(--navy)}
+
+  h2{font-size:30px;font-weight:800;color:var(--navy);text-transform:uppercase;
+     border-bottom:2px solid var(--navy);display:inline-block;padding-bottom:5px;margin-bottom:22px;
+     padding-right:70px}
+
+  section{margin-top:46px}
+
+  /* píldoras de datos (estilo "Algunos indicadores") */
+  .pills{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+  .pill{display:flex;align-items:center;gap:18px;border-radius:99px;padding:14px 30px 14px 14px;color:#fff}
+  .pill.d{background:var(--navy)} .pill.l{background:var(--blue)}
+  .pill .ic{flex:none;width:62px;height:62px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .pill .ic svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pill .n{font-size:38px;font-weight:800;line-height:1}
+  .pill .t{font-size:15px;font-weight:600;line-height:1.25}
+  .pill.wide{grid-column:1 / -1;justify-content:center}
+
+  .def{display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:stretch}
+  .def p{font-size:19px}
+  .def p+p{margin-top:12px}
+  .def b{color:var(--navy)}
+  .quote{background:var(--navy);color:#fff;border-radius:22px;padding:30px 30px 26px;position:relative}
+  .quote:before{content:"“";position:absolute;top:-8px;left:20px;font:800 120px/1 Georgia,serif;color:var(--blue)}
+  .quote p{font-size:21px;font-weight:600;position:relative;padding-top:34px}
+  .quote small{display:block;margin-top:14px;font-size:13px;opacity:.8}
+
+  /* 5 perfiles */
+  .types{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .type{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:18px 14px 18px;text-align:center}
+  .type i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+          background:var(--blue);color:#fff;font:800 22px/1 inherit;font-style:normal;margin:0 auto 12px}
+  .type:nth-child(even) i{background:var(--navy)}
+  .type h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .type p{font-size:13.5px;line-height:1.4}
+  .type em{display:block;margin-top:9px;font-size:12.5px;color:var(--navy);font-weight:600}
+
+  /* señales */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .checks{list-style:none}
+  .checks li{display:flex;gap:14px;align-items:flex-start;font-size:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .checks li:last-child{border-bottom:0}
+  .checks svg{flex:none;width:26px;height:26px;margin-top:1px}
+  .box{background:var(--tint);border-radius:22px;padding:26px 28px}
+  .box h3{font-size:19px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:10px}
+  .box p{font-size:17px}
+  .box p+p{margin-top:10px}
+
+  /* pasos */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step{border-radius:22px;padding:22px 18px;color:#fff;min-height:238px}
+  .step:nth-child(odd){background:var(--navy)} .step:nth-child(even){background:var(--blue)}
+  .step b{display:block;font-size:46px;font-weight:800;line-height:1;opacity:.95}
+  .step h3{font-size:17px;font-weight:800;text-transform:uppercase;margin:8px 0 8px}
+  .step p{font-size:14.5px;line-height:1.4}
+
+  .cta{margin-top:46px;background:var(--navy);color:#fff;border-radius:26px;padding:30px 36px;display:flex;align-items:center;gap:30px}
+  .cta h3{font-size:25px;font-weight:800;text-transform:uppercase;line-height:1.15}
+  .cta p{font-size:17px;margin-top:6px;opacity:.95}
+  .cta .badge{flex:none;width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .cta .badge svg{width:56px;height:56px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  footer{margin-top:34px;padding-top:18px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+  footer img{height:48px}
+  footer .src{font-size:11.5px;line-height:1.45;max-width:700px;color:#3d5e70}
+  footer .src b{color:var(--navy)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="tag">Lánzate · Autoconocimiento</div>
+  </div>
+
+  <div class="hero">
+    <div class="wm">MINDSET</div>
+    <h1>Síndrome<br>del <span>impostor</span></h1>
+    <div class="rule"></div>
+    <p class="lead">«No me lo merezco, tuve suerte, en cualquier momento se darán cuenta». Si emprendes, es probable que esta voz te suene. <b>Entenderla es el primer paso para que no decida por ti.</b></p>
+  </div>
+
+  <section>
+    <h2>Algunos datos</h2>
+    <div class="pills">
+      <div class="pill d">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div>
+        <div><div class="n">1978</div><div class="t">las psicólogas Clance e Imes describen el «fenómeno del impostor»</div></div>
+      </div>
+      <div class="pill l">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 1.5 6 5.5"/></svg></div>
+        <div><div class="n">9 – 82 %</div><div class="t">de personas lo experimentan, según el estudio y el colectivo*</div></div>
+      </div>
+      <div class="pill l">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9.3l-4 4 1 5.7-5-2.8L7 19l1-5.7-4-4 5.5-.8z"/></svg></div>
+        <div><div class="n">5</div><div class="t">perfiles frecuentes de impostor (según Valerie Young)</div></div>
+      </div>
+      <div class="pill d">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.500-7 10-7 10z"/></svg></div>
+        <div><div class="n">No es</div><div class="t">un trastorno clínico: es un patrón de pensamiento que se puede trabajar</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>¿Qué es?</h2>
+    <div class="def">
+      <div>
+        <p>Es la <b>sensación persistente de ser un fraude</b> pese a tener logros y evidencias de capacidad. La persona atribuye sus éxitos a la suerte, al esfuerzo extra o a «que no se han dado cuenta todavía», y vive los errores como prueba de que no está a la altura.</p>
+        <p>En el emprendimiento aparece con fuerza: se <b>trabaja en solitario</b>, hay mucha incertidumbre y es fácil compararse con el escaparate de otros proyectos en redes.</p>
+      </div>
+      <div class="quote">
+        <p>Sentirse impostor no significa serlo. Significa que estás saliendo de tu zona conocida.</p>
+        <small>Idea clave para recordar</small>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Los 5 perfiles</h2>
+    <div class="types">
+      <div class="type"><i>1</i><h3>Perfeccionista</h3><p>Se fija metas altísimas y vive el 95&nbsp;% como un fracaso.</p><em>«Podría haberlo hecho mejor»</em></div>
+      <div class="type"><i>2</i><h3>Superhéroe</h3><p>Se exige hacerlo todo y a todas horas para demostrar su valía.</p><em>«Tengo que poder con todo»</em></div>
+      <div class="type"><i>3</i><h3>Genio natural</h3><p>Si algo no sale a la primera, concluye que no tiene talento.</p><em>«Esto debería ser fácil»</em></div>
+      <div class="type"><i>4</i><h3>Individualista</h3><p>Pedir ayuda le parece una prueba de que no es suficiente.</p><em>«Si lo pido, me descubren»</em></div>
+      <div class="type"><i>5</i><h3>Experto</h3><p>Nunca se siente preparado: una formación más y entonces sí.</p><em>«Aún no sé lo suficiente»</em></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="two">
+      <div>
+        <h2>Señales</h2>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.500 12.500l3 3 6-6.500"/></svg>Quitas importancia a tus logros («fue suerte»)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.500 12.500l3 3 6-6.500"/></svg>Retrasas lanzar algo hasta que esté «perfecto»</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.500 12.500l3 3 6-6.500"/></svg>Te comparas constantemente con otros proyectos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.500 12.500l3 3 6-6.500"/></svg>Te cuesta pedir ayuda o cobrar lo que vales</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.500 12.500l3 3 6-6.500"/></svg>Un elogio te incomoda más que una crítica</li>
+        </ul>
+      </div>
+      <div class="box" style="align-self:end">
+        <h3>El círculo del impostor</h3>
+        <p>Nueva tarea → ansiedad → <b>sobre-preparación o procrastinación</b> → resultado bueno → «fue por el esfuerzo extra / suerte» → la duda se refuerza.</p>
+        <p>Romper el círculo no exige dejar de sentir dudas, sino <b>cambiar lo que haces con ellas</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4 pasos para gestionarlo</h2>
+    <div class="steps">
+      <div class="step"><b>01</b><h3>Nómbralo</h3><p>Poner nombre a la sensación le quita fuerza: «es mi voz de impostor», no un hecho.</p></div>
+      <div class="step"><b>02</b><h3>Reúne evidencias</h3><p>Guarda un «archivo de logros»: feedback, resultados y cosas que has sacado adelante.</p></div>
+      <div class="step"><b>03</b><h3>Reformula</h3><p>Cambia «no sé lo suficiente» por «¿qué me falta aprender para el siguiente paso?».</p></div>
+      <div class="step"><b>04</b><h3>Comparte</h3><p>Habla con otras personas emprendedoras o mentoras: descubrirás que no eres la única persona que lo siente.</p></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="badge"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.500 10.900c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0 0 12 3z"/></svg></div>
+    <div>
+      <h3>Ejercicio de esta semana</h3>
+      <p>Anota <b>3 logros</b> recientes y, al lado de cada uno, qué hiciste tú para conseguirlo. Léelo antes de tu próxima decisión importante.</p>
+    </div>
+  </div>
+
+  <footer>
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="src">
+      <b>Material elaborado por personas voluntarias para el programa Lánzate.</b><br>
+      *Bravata et al. (2020), <i>Prevalence, predictors, and treatment of impostor syndrome: a systematic review</i>, J. Gen. Intern. Med. · Clance &amp; Imes (1978), <i>The imposter phenomenon in high achieving women</i> · Young, V. (2011), <i>The Secret Thoughts of Successful Women</i>.
+    </div>
+  </footer>
+</div>
+</body>
+</html>
