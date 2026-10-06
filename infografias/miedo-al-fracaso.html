@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Miedo al fracaso · Lánzate</title>
+<style>
+  :root{
+    --blue:#0090C0;      /* azul claro del logo FSMLR */
+    --navy:#006088;      /* azul oscuro del logo FSMLR */
+    --ink:#0B2F44;       /* texto */
+    --bg:#F5FAFD;        /* blanco azulado, como el informe de referencia */
+    --tint:#DCEEF6;
+    --line:#BBD9E8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1080px;background:var(--bg);color:var(--ink);
+       font-family:"Montserrat","Poppins","Liberation Sans",Arial,sans-serif;line-height:1.45}
+  .page{position:relative;overflow:hidden;padding:56px 64px 40px}
+
+  /* cabecera */
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+  .top img{height:64px}
+  .tag{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+       color:#fff;background:var(--navy);padding:9px 20px;border-radius:99px}
+
+  /* título + marca de agua */
+  .hero{position:relative;margin-bottom:30px}
+  .wm{position:absolute;right:-30px;top:-34px;font-size:190px;font-weight:800;color:var(--tint);
+      letter-spacing:-.02em;line-height:1;z-index:0;white-space:nowrap}
+  h1{position:relative;z-index:1;font-size:74px;line-height:1.0;font-weight:800;color:var(--navy);
+     text-transform:uppercase;letter-spacing:-.01em}
+  h1 span{color:var(--blue)}
+  .rule{position:relative;z-index:1;height:3px;width:100%;background:var(--navy);margin:20px 0 18px}
+  .lead{position:relative;z-index:1;font-size:21px;max-width:830px}
+  .lead b{color:var(--navy)}
+
+  h2{font-size:30px;font-weight:800;color:var(--navy);text-transform:uppercase;
+     border-bottom:2px solid var(--navy);display:inline-block;padding-bottom:5px;margin-bottom:22px;
+     padding-right:70px}
+
+  section{margin-top:46px}
+
+  /* píldoras de datos (estilo "Algunos indicadores") */
+  .pills{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+  .pill{display:flex;align-items:center;gap:18px;border-radius:99px;padding:14px 30px 14px 14px;color:#fff}
+  .pill.d{background:var(--navy)} .pill.l{background:var(--blue)}
+  .pill .ic{flex:none;width:62px;height:62px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .pill .ic svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pill .n{font-size:38px;font-weight:800;line-height:1}
+  .pill .t{font-size:15px;font-weight:600;line-height:1.25}
+  .pill.wide{grid-column:1 / -1;justify-content:center}
+
+  .def{display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:stretch}
+  .def p{font-size:19px}
+  .def p+p{margin-top:12px}
+  .def b{color:var(--navy)}
+  .quote{background:var(--navy);color:#fff;border-radius:22px;padding:30px 30px 26px;position:relative}
+  .quote:before{content:"“";position:absolute;top:-8px;left:20px;font:800 120px/1 Georgia,serif;color:var(--blue)}
+  .quote p{font-size:21px;font-weight:600;position:relative;padding-top:34px}
+  .quote small{display:block;margin-top:14px;font-size:13px;opacity:.8}
+
+  /* 5 perfiles */
+  .types{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .type{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:18px 14px 18px;text-align:center}
+  .type i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+          background:var(--blue);color:#fff;font:800 22px/1 inherit;font-style:normal;margin:0 auto 12px}
+  .type:nth-child(even) i{background:var(--navy)}
+  .type h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .type p{font-size:13.5px;line-height:1.4}
+  .type em{display:block;margin-top:9px;font-size:12.5px;color:var(--navy);font-weight:600}
+
+  /* señales */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .checks{list-style:none}
+  .checks li{display:flex;gap:14px;align-items:flex-start;font-size:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .checks li:last-child{border-bottom:0}
+  .checks svg{flex:none;width:26px;height:26px;margin-top:1px}
+  .box{background:var(--tint);border-radius:22px;padding:26px 28px}
+  .box h3{font-size:19px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:10px}
+  .box p{font-size:17px}
+  .box p+p{margin-top:10px}
+
+  /* pasos */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step{border-radius:22px;padding:22px 18px;color:#fff;min-height:238px}
+  .step:nth-child(odd){background:var(--navy)} .step:nth-child(even){background:var(--blue)}
+  .step b{display:block;font-size:46px;font-weight:800;line-height:1;opacity:.95}
+  .step h3{font-size:17px;font-weight:800;text-transform:uppercase;margin:8px 0 8px}
+  .step p{font-size:14.5px;line-height:1.4}
+
+  .cta{margin-top:46px;background:var(--navy);color:#fff;border-radius:26px;padding:30px 36px;display:flex;align-items:center;gap:30px}
+  .cta h3{font-size:25px;font-weight:800;text-transform:uppercase;line-height:1.15}
+  .cta p{font-size:17px;margin-top:6px;opacity:.95}
+  .cta .badge{flex:none;width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .cta .badge svg{width:56px;height:56px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  footer{margin-top:34px;padding-top:18px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+  footer img{height:48px}
+  footer .src{font-size:11.5px;line-height:1.45;max-width:700px;color:#3d5e70}
+  footer .src b{color:var(--navy)}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:22px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+  .vs .col{padding:24px 28px}
+  .vs .col.a{background:#fff} .vs .col.b{background:var(--navy);color:#fff}
+  .vs h3{font-size:18px;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+  .vs .a h3{color:var(--navy)}
+  .vs ul{list-style:none}
+  .vs li{font-size:17px;padding:9px 0;border-bottom:1px solid rgba(0,96,136,.18)}
+  .vs .b li{border-bottom-color:rgba(255,255,255,.28)}
+  .vs li:last-child{border-bottom:0}
+  .fears{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .fear{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:20px 16px;text-align:left}
+  .fear i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;font:800 22px/1 inherit;font-style:normal;margin-bottom:12px}
+  .fear:nth-child(even) i{background:var(--navy)}
+  .fear h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .fear p{font-size:14px;line-height:1.4}
+  .fear em{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--navy);font-weight:600}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="tag">Lánzate · Autoconocimiento</div>
+  </div>
+
+  <div class="hero">
+    <div class="wm">RIESGO</div>
+    <h1>Miedo<br>al <span>fracaso</span></h1>
+    <div class="rule"></div>
+    <p class="lead">«¿Y si sale mal?». Es la pregunta que más proyectos frena antes de empezar. <b>El objetivo no es eliminar el miedo, sino aprender a decidir con él a tu lado.</b></p>
+  </div>
+
+  <section>
+    <h2>Para empezar</h2>
+    <div class="pills">
+      <div class="pill d">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg></div>
+        <div><div class="n">Normal</div><div class="t">el miedo es una respuesta de protección: aparece cuando algo nos importa</div></div>
+      </div>
+      <div class="pill l">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/><path d="M10 6L4 12l6 6" opacity=".35"/></svg></div>
+        <div><div class="n">2 caras</div><div class="t">puede paralizar o puede empujar a prepararte mejor*</div></div>
+      </div>
+      <div class="pill l">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.500"/><circle cx="12" cy="12" r=".8"/></svg></div>
+        <div><div class="n">4</div><div class="t">miedos que suelen esconderse detrás del «no me atrevo»</div></div>
+      </div>
+      <div class="pill d">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></div>
+        <div><div class="n">Se entrena</div><div class="t">con pequeños experimentos, no con grandes saltos al vacío</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>¿Qué es?</h2>
+    <div class="def">
+      <div>
+        <p>El miedo al fracaso es la <b>anticipación de las consecuencias negativas</b> de no lograr lo que nos proponemos: perder dinero, tiempo, imagen o confianza en nosotros mismos.</p>
+        <p>En el emprendimiento es especialmente habitual porque <b>el resultado es incierto</b> y lo que está en juego es personal. Lo importante es distinguir entre un <b>riesgo real</b>, que se puede medir y reducir, y un <b>miedo difuso</b>, que solo crece cuanto más lo evitamos.</p>
+      </div>
+      <div class="quote">
+        <p>Fracasar no es el final del camino: es información sobre qué ajustar en el siguiente intento.</p>
+        <small>Idea clave para recordar</small>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4 miedos escondidos</h2>
+    <div class="fears">
+      <div class="fear"><i>1</i><h3>A perder dinero</h3><p>Miedo a invertir ahorros o a endeudarse y no recuperarlos.</p><em>¿Cuánto puedo permitirme perder?</em></div>
+      <div class="fear"><i>2</i><h3>Al qué dirán</h3><p>Miedo a quedar mal ante familia, amistades o redes sociales.</p><em>¿Quién opina realmente importa?</em></div>
+      <div class="fear"><i>3</i><h3>A no ser suficiente</h3><p>Miedo a descubrir que no tenemos la capacidad necesaria.</p><em>¿Qué puedo aprender para cubrirlo?</em></div>
+      <div class="fear"><i>4</i><h3>A perder la oportunidad</h3><p>Miedo a dejar un camino seguro por otro que no lo es.</p><em>¿Qué pierdo también si no lo intento?</em></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cambia la mirada</h2>
+    <div class="vs">
+      <div class="col a">
+        <h3>Lo que me digo</h3>
+        <ul>
+          <li>«He fracasado»</li>
+          <li>«No valgo para esto»</li>
+          <li>«Si sale mal, todo habrá sido en vano»</li>
+          <li>«Mejor no lo intento»</li>
+        </ul>
+      </div>
+      <div class="col b">
+        <h3>Lo que puedo decirme</h3>
+        <ul>
+          <li>«Este intento no ha funcionado»</li>
+          <li>«Todavía no domino esta parte»</li>
+          <li>«Habré aprendido algo que me sirve»</li>
+          <li>«Pruebo en pequeño y ajusto»</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4 pasos para gestionarlo</h2>
+    <div class="steps">
+      <div class="step"><b>01</b><h3>Ponle nombre</h3><p>Escribe de qué tienes miedo exactamente. Un miedo concreto se puede trabajar; uno difuso, no.</p></div>
+      <div class="step"><b>02</b><h3>Mide el riesgo</h3><p>Valora cuánto de probable es, cuánto costaría y cuánto de reversible sería.</p></div>
+      <div class="step"><b>03</b><h3>Prueba en pequeño</h3><p>Lanza una versión mínima de tu idea con poco coste antes de comprometerte del todo.</p></div>
+      <div class="step"><b>04</b><h3>Aprende y ajusta</h3><p>Anota qué ha salido bien, qué no y qué cambiarás. Cada intento deja datos.</p></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="badge"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.500 10.900c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0 0 12 3z"/></svg></div>
+    <div>
+      <h3>Ejercicio de esta semana</h3>
+      <p>Escribe tu <b>peor escenario</b>, qué harías para recuperarte si ocurriera y cuál sería el <b>mejor escenario</b> posible. Después, da un paso pequeño que puedas hacer en 48 horas.</p>
+    </div>
+  </div>
+
+  <footer>
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="src">
+      <b>Material elaborado por personas voluntarias para el programa Lánzate.</b><br>
+      *Cacciotti, G. &amp; Hayton, J. C. (2015), <i>Fear and Entrepreneurship: A Review and Research Agenda</i>, International Journal of Management Reviews · Dweck, C. (2006), <i>Mindset: The New Psychology of Success</i>.
+    </div>
+  </footer>
+</div>
+</body>
+</html>
