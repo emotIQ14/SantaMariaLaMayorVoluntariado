@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Inteligencia emocional y emprendimiento · Lánzate</title>
+<style>
+  :root{
+    --blue:#0090C0;      /* azul claro del logo FSMLR */
+    --navy:#006088;      /* azul oscuro del logo FSMLR */
+    --ink:#0B2F44;       /* texto */
+    --bg:#F5FAFD;        /* blanco azulado, como el informe de referencia */
+    --tint:#DCEEF6;
+    --line:#BBD9E8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1080px;background:var(--bg);color:var(--ink);
+       font-family:"Montserrat","Poppins","Liberation Sans",Arial,sans-serif;line-height:1.45}
+  .page{position:relative;overflow:hidden;padding:56px 64px 40px}
+
+  /* cabecera */
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+  .top img{height:64px}
+  .tag{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+       color:#fff;background:var(--navy);padding:9px 20px;border-radius:99px}
+
+  /* título + marca de agua */
+  .hero{position:relative;margin-bottom:30px}
+  .wm{position:absolute;right:-30px;top:-34px;font-size:190px;font-weight:800;color:var(--tint);
+      letter-spacing:-.02em;line-height:1;z-index:0;white-space:nowrap}
+  h1{position:relative;z-index:1;font-size:74px;line-height:1.0;font-weight:800;color:var(--navy);
+     text-transform:uppercase;letter-spacing:-.01em}
+  h1 span{color:var(--blue)}
+  .rule{position:relative;z-index:1;height:3px;width:100%;background:var(--navy);margin:20px 0 18px}
+  .lead{position:relative;z-index:1;font-size:21px;max-width:830px}
+  .lead b{color:var(--navy)}
+
+  h2{font-size:30px;font-weight:800;color:var(--navy);text-transform:uppercase;
+     border-bottom:2px solid var(--navy);display:inline-block;padding-bottom:5px;margin-bottom:22px;
+     padding-right:70px}
+
+  section{margin-top:46px}
+
+  /* píldoras de datos (estilo "Algunos indicadores") */
+  .pills{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+  .pill{display:flex;align-items:center;gap:18px;border-radius:99px;padding:14px 30px 14px 14px;color:#fff}
+  .pill.d{background:var(--navy)} .pill.l{background:var(--blue)}
+  .pill .ic{flex:none;width:62px;height:62px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .pill .ic svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pill .n{font-size:38px;font-weight:800;line-height:1}
+  .pill .t{font-size:15px;font-weight:600;line-height:1.25}
+  .pill.wide{grid-column:1 / -1;justify-content:center}
+
+  .def{display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:stretch}
+  .def p{font-size:19px}
+  .def p+p{margin-top:12px}
+  .def b{color:var(--navy)}
+  .quote{background:var(--navy);color:#fff;border-radius:22px;padding:30px 30px 26px;position:relative}
+  .quote:before{content:"“";position:absolute;top:-8px;left:20px;font:800 120px/1 Georgia,serif;color:var(--blue)}
+  .quote p{font-size:21px;font-weight:600;position:relative;padding-top:34px}
+  .quote small{display:block;margin-top:14px;font-size:13px;opacity:.8}
+
+  /* 5 perfiles */
+  .types{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .type{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:18px 14px 18px;text-align:center}
+  .type i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+          background:var(--blue);color:#fff;font:800 22px/1 inherit;font-style:normal;margin:0 auto 12px}
+  .type:nth-child(even) i{background:var(--navy)}
+  .type h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .type p{font-size:13.5px;line-height:1.4}
+  .type em{display:block;margin-top:9px;font-size:12.5px;color:var(--navy);font-weight:600}
+
+  /* señales */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .checks{list-style:none}
+  .checks li{display:flex;gap:14px;align-items:flex-start;font-size:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .checks li:last-child{border-bottom:0}
+  .checks svg{flex:none;width:26px;height:26px;margin-top:1px}
+  .box{background:var(--tint);border-radius:22px;padding:26px 28px}
+  .box h3{font-size:19px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:10px}
+  .box p{font-size:17px}
+  .box p+p{margin-top:10px}
+
+  /* pasos */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step{border-radius:22px;padding:22px 18px;color:#fff;min-height:238px}
+  .step:nth-child(odd){background:var(--navy)} .step:nth-child(even){background:var(--blue)}
+  .step b{display:block;font-size:46px;font-weight:800;line-height:1;opacity:.95}
+  .step h3{font-size:17px;font-weight:800;text-transform:uppercase;margin:8px 0 8px}
+  .step p{font-size:14.5px;line-height:1.4}
+
+  .cta{margin-top:46px;background:var(--navy);color:#fff;border-radius:26px;padding:30px 36px;display:flex;align-items:center;gap:30px}
+  .cta h3{font-size:25px;font-weight:800;text-transform:uppercase;line-height:1.15}
+  .cta p{font-size:17px;margin-top:6px;opacity:.95}
+  .cta .badge{flex:none;width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .cta .badge svg{width:56px;height:56px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  footer{margin-top:34px;padding-top:18px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+  footer img{height:48px}
+  footer .src{font-size:11.5px;line-height:1.45;max-width:700px;color:#3d5e70}
+  footer .src b{color:var(--navy)}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:22px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+  .vs .col{padding:24px 28px}
+  .vs .col.a{background:#fff} .vs .col.b{background:var(--navy);color:#fff}
+  .vs h3{font-size:18px;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+  .vs .a h3{color:var(--navy)}
+  .vs ul{list-style:none}
+  .vs li{font-size:17px;padding:9px 0;border-bottom:1px solid rgba(0,96,136,.18)}
+  .vs .b li{border-bottom-color:rgba(255,255,255,.28)}
+  .vs li:last-child{border-bottom:0}
+  .fears{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .fear{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:20px 16px;text-align:left}
+  .fear i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;font:800 22px/1 inherit;font-style:normal;margin-bottom:12px}
+  .fear:nth-child(even) i{background:var(--navy)}
+  .fear h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .fear p{font-size:14px;line-height:1.4}
+  .fear em{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--navy);font-weight:600}
+
+  h1.small{font-size:60px}
+  .map{display:grid;grid-template-columns:1fr 1fr;border-radius:22px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+  .map .row{display:contents}
+  .map .s,.map .h{padding:16px 24px;font-size:16.5px;border-bottom:1px solid var(--line)}
+  .map .h{background:var(--navy);color:#fff;font-weight:600;border-bottom:1px solid rgba(255,255,255,.25)}
+  .map .s b,.map .h b{display:block;text-transform:uppercase;font-size:13px;letter-spacing:.06em;margin-bottom:3px}
+  .map .s b{color:var(--blue)} .map .h b{color:#BFE6F5}
+  .map .row:last-child .s,.map .row:last-child .h{border-bottom:0}
+  .head2{display:grid;grid-template-columns:1fr 1fr}
+  .head2 div{padding:14px 24px;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .head2 div:first-child{background:var(--tint);color:var(--navy)}
+  .head2 div:last-child{background:var(--blue);color:#fff}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="tag">Lánzate · Autoconocimiento</div>
+  </div>
+
+  <div class="hero">
+    <div class="wm" style="font-size:150px;top:-10px;right:-20px">EMOCIÓN</div>
+    <h1 class="small">Inteligencia<br>emocional y <span>emprendimiento</span></h1>
+    <div class="rule"></div>
+    <p class="lead">Emprender es tomar decisiones con incertidumbre, presión y mucha implicación personal. <b>Gestionar bien tus emociones y las de tu equipo es tan importante como tu idea de negocio.</b></p>
+  </div>
+
+  <section>
+    <h2>Para empezar</h2>
+    <div class="pills">
+      <div class="pill d">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div>
+        <div><div class="n">1990</div><div class="t">Salovey y Mayer acuñan el término «inteligencia emocional»</div></div>
+      </div>
+      <div class="pill l">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h14v12H9l-4 4z"/></svg></div>
+        <div><div class="n">1995</div><div class="t">Daniel Goleman lo populariza con su libro <i>Inteligencia emocional</i></div></div>
+      </div>
+      <div class="pill l">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.500 5.500L20 9.300l-4 4 1 5.700-5-2.800L7 19l1-5.700-4-4 5.500-.8z"/></svg></div>
+        <div><div class="n">5</div><div class="t">componentes principales en el modelo de Goleman</div></div>
+      </div>
+      <div class="pill d">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></div>
+        <div><div class="n">Se entrena</div><div class="t">no es un don: se desarrolla con práctica y atención diaria</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>¿Qué es?</h2>
+    <div class="def">
+      <div>
+        <p>Es la capacidad de <b>reconocer, comprender y gestionar las propias emociones</b> y de interpretar las de las demás personas para tomar mejores decisiones y relacionarnos mejor.</p>
+        <p>En un proyecto emprendedor se nota en cómo <b>negocias, lideras, vendes, reaccionas ante un «no»</b> y te recuperas de los días malos. No se trata de no sentir, sino de <b>elegir cómo responder</b>.</p>
+      </div>
+      <div class="quote">
+        <p>Las emociones no son un obstáculo para decidir: son información que conviene saber leer.</p>
+        <small>Idea clave para recordar</small>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Los 5 componentes</h2>
+    <div class="types">
+      <div class="type"><i>1</i><h3>Autoconciencia</h3><p>Saber qué siento y cómo influye en lo que hago.</p><em>«Me noto nervioso/a»</em></div>
+      <div class="type"><i>2</i><h3>Autorregulación</h3><p>Gestionar impulsos y emociones intensas sin que decidan por mí.</p><em>«Respiro antes de responder»</em></div>
+      <div class="type"><i>3</i><h3>Motivación</h3><p>Mantener el rumbo y la energía pese a los obstáculos.</p><em>«Recuerdo para qué lo hago»</em></div>
+      <div class="type"><i>4</i><h3>Empatía</h3><p>Comprender lo que sienten y necesitan las demás personas.</p><em>«¿Qué necesita mi cliente?»</em></div>
+      <div class="type"><i>5</i><h3>Habilidades sociales</h3><p>Comunicar, negociar y colaborar de forma constructiva.</p><em>«Pido ayuda y feedback»</em></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>En tu proyecto</h2>
+    <div class="map" style="grid-template-rows:auto">
+      <div class="row"><div class="s"><b>Situación</b>Un cliente te dice que no</div><div class="h"><b>Qué te ayuda</b>Autorregulación: separa tu valía del resultado y pregunta el motivo</div></div>
+      <div class="row"><div class="s"><b>Situación</b>Desacuerdo con tu socio/a</div><div class="h"><b>Qué te ayuda</b>Empatía: escucha y pregunta antes de responder</div></div>
+      <div class="row"><div class="s"><b>Situación</b>Una semana sin ventas</div><div class="h"><b>Qué te ayuda</b>Motivación: recuerda tu porqué y fija metas pequeñas</div></div>
+      <div class="row"><div class="s"><b>Situación</b>Presentar tu proyecto en público</div><div class="h"><b>Qué te ayuda</b>Autoconciencia: reconoce los nervios y canalízalos en preparación</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4 hábitos para entrenarla</h2>
+    <div class="steps">
+      <div class="step"><b>01</b><h3>Nombra lo que sientes</h3><p>Ponle una palabra concreta a la emoción: «frustración», «ilusión», «inseguridad».</p></div>
+      <div class="step"><b>02</b><h3>Haz una pausa</h3><p>Antes de una decisión o respuesta importante, respira y dale unos minutos.</p></div>
+      <div class="step"><b>03</b><h3>Escucha de verdad</h3><p>Repite con tus palabras lo que te cuentan antes de dar tu opinión.</p></div>
+      <div class="step"><b>04</b><h3>Pide feedback</h3><p>Pregunta cómo te perciben y qué podrías hacer distinto.</p></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="badge"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.500 10.900c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0 0 12 3z"/></svg></div>
+    <div>
+      <h3>Ejercicio de esta semana</h3>
+      <p>Cada noche, apunta en 3 minutos: <b>qué situación viviste, qué emoción sentiste y qué necesitabas</b>. Al cabo de una semana, busca patrones.</p>
+    </div>
+  </div>
+
+  <footer>
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="src">
+      <b>Material elaborado por personas voluntarias para el programa Lánzate.</b><br>
+      Salovey, P. &amp; Mayer, J. D. (1990), <i>Emotional Intelligence</i>, Imagination, Cognition and Personality · Goleman, D. (1995), <i>Emotional Intelligence</i>.
+    </div>
+  </footer>
+</div>
+</body>
+</html>
