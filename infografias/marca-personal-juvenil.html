@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Marca personal juvenil · Lánzate</title>
+<style>
+  :root{
+    --blue:#0090C0;      /* azul claro del logo FSMLR */
+    --navy:#006088;      /* azul oscuro del logo FSMLR */
+    --ink:#0B2F44;       /* texto */
+    --bg:#F5FAFD;        /* blanco azulado, como el informe de referencia */
+    --tint:#DCEEF6;
+    --line:#BBD9E8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1080px;background:var(--bg);color:var(--ink);
+       font-family:"Montserrat","Poppins","Liberation Sans",Arial,sans-serif;line-height:1.45}
+  .page{position:relative;overflow:hidden;padding:56px 64px 40px}
+
+  /* cabecera */
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+  .top img{height:64px}
+  .tag{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+       color:#fff;background:var(--navy);padding:9px 20px;border-radius:99px}
+
+  /* título + marca de agua */
+  .hero{position:relative;margin-bottom:30px}
+  .wm{position:absolute;right:-30px;top:-34px;font-size:190px;font-weight:800;color:var(--tint);
+      letter-spacing:-.02em;line-height:1;z-index:0;white-space:nowrap}
+  h1{position:relative;z-index:1;font-size:74px;line-height:1.0;font-weight:800;color:var(--navy);
+     text-transform:uppercase;letter-spacing:-.01em}
+  h1 span{color:var(--blue)}
+  .rule{position:relative;z-index:1;height:3px;width:100%;background:var(--navy);margin:20px 0 18px}
+  .lead{position:relative;z-index:1;font-size:21px;max-width:830px}
+  .lead b{color:var(--navy)}
+
+  h2{font-size:30px;font-weight:800;color:var(--navy);text-transform:uppercase;
+     border-bottom:2px solid var(--navy);display:inline-block;padding-bottom:5px;margin-bottom:22px;
+     padding-right:70px}
+
+  section{margin-top:46px}
+
+  /* píldoras de datos (estilo "Algunos indicadores") */
+  .pills{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+  .pill{display:flex;align-items:center;gap:18px;border-radius:99px;padding:14px 30px 14px 14px;color:#fff}
+  .pill.d{background:var(--navy)} .pill.l{background:var(--blue)}
+  .pill .ic{flex:none;width:62px;height:62px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .pill .ic svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pill .n{font-size:38px;font-weight:800;line-height:1}
+  .pill .t{font-size:15px;font-weight:600;line-height:1.25}
+  .pill.wide{grid-column:1 / -1;justify-content:center}
+
+  .def{display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:stretch}
+  .def p{font-size:19px}
+  .def p+p{margin-top:12px}
+  .def b{color:var(--navy)}
+  .quote{background:var(--navy);color:#fff;border-radius:22px;padding:30px 30px 26px;position:relative}
+  .quote:before{content:"“";position:absolute;top:-8px;left:20px;font:800 120px/1 Georgia,serif;color:var(--blue)}
+  .quote p{font-size:21px;font-weight:600;position:relative;padding-top:34px}
+  .quote small{display:block;margin-top:14px;font-size:13px;opacity:.8}
+
+  /* 5 perfiles */
+  .types{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .type{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:18px 14px 18px;text-align:center}
+  .type i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+          background:var(--blue);color:#fff;font:800 22px/1 inherit;font-style:normal;margin:0 auto 12px}
+  .type:nth-child(even) i{background:var(--navy)}
+  .type h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .type p{font-size:13.5px;line-height:1.4}
+  .type em{display:block;margin-top:9px;font-size:12.5px;color:var(--navy);font-weight:600}
+
+  /* señales */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .checks{list-style:none}
+  .checks li{display:flex;gap:14px;align-items:flex-start;font-size:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .checks li:last-child{border-bottom:0}
+  .checks svg{flex:none;width:26px;height:26px;margin-top:1px}
+  .box{background:var(--tint);border-radius:22px;padding:26px 28px}
+  .box h3{font-size:19px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:10px}
+  .box p{font-size:17px}
+  .box p+p{margin-top:10px}
+
+  /* pasos */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step{border-radius:22px;padding:22px 18px;color:#fff;min-height:238px}
+  .step:nth-child(odd){background:var(--navy)} .step:nth-child(even){background:var(--blue)}
+  .step b{display:block;font-size:46px;font-weight:800;line-height:1;opacity:.95}
+  .step h3{font-size:17px;font-weight:800;text-transform:uppercase;margin:8px 0 8px}
+  .step p{font-size:14.5px;line-height:1.4}
+
+  .cta{margin-top:46px;background:var(--navy);color:#fff;border-radius:26px;padding:30px 36px;display:flex;align-items:center;gap:30px}
+  .cta h3{font-size:25px;font-weight:800;text-transform:uppercase;line-height:1.15}
+  .cta p{font-size:17px;margin-top:6px;opacity:.95}
+  .cta .badge{flex:none;width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .cta .badge svg{width:56px;height:56px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  footer{margin-top:34px;padding-top:18px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+  footer img{height:48px}
+  footer .src{font-size:11.5px;line-height:1.45;max-width:700px;color:#3d5e70}
+  footer .src b{color:var(--navy)}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:22px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+  .vs .col{padding:24px 28px}
+  .vs .col.a{background:#fff} .vs .col.b{background:var(--navy);color:#fff}
+  .vs h3{font-size:18px;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+  .vs .a h3{color:var(--navy)}
+  .vs ul{list-style:none}
+  .vs li{font-size:17px;padding:9px 0;border-bottom:1px solid rgba(0,96,136,.18)}
+  .vs .b li{border-bottom-color:rgba(255,255,255,.28)}
+  .vs li:last-child{border-bottom:0}
+  .fears{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .fear{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:20px 16px;text-align:left}
+  .fear i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;font:800 22px/1 inherit;font-style:normal;margin-bottom:12px}
+  .fear:nth-child(even) i{background:var(--navy)}
+  .fear h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .fear p{font-size:14px;line-height:1.4}
+  .fear em{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--navy);font-weight:600}
+
+  h1.small{font-size:64px}
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .area{border-radius:22px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+  .area .hd{padding:18px 20px;color:#fff}
+  .area:nth-child(odd) .hd{background:var(--navy)} .area:nth-child(even) .hd{background:var(--blue)}
+  .area .hd b{display:block;font-size:34px;font-weight:800;line-height:1}
+  .area .hd h3{font-size:17px;font-weight:800;text-transform:uppercase;margin-top:6px}
+  .area ul{list-style:none;padding:8px 20px 14px}
+  .area li{font-size:15.5px;padding:9px 0 9px 22px;border-bottom:1px solid var(--line);position:relative}
+  .area li:last-child{border-bottom:0}
+  .area li:before{content:"";position:absolute;left:0;top:15px;width:10px;height:10px;border-radius:50%;background:var(--blue)}
+  .diag{border-radius:22px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+  .diag .r{display:grid;grid-template-columns:1fr 78px 78px 78px 78px;align-items:center;border-bottom:1px solid var(--line)}
+  .diag .r:last-child{border-bottom:0}
+  .diag .r>div{padding:13px 10px;text-align:center}
+  .diag .r>div:first-child{text-align:left;padding-left:22px;font-size:16.5px}
+  .diag .r>div:first-child small{display:block;font-size:12px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+  .diag .th{background:var(--navy);color:#fff;font-size:13px;font-weight:800;text-transform:uppercase}
+  .diag .th>div:first-child{font-size:14px!important}
+  .diag .th small{display:block;font-weight:600;text-transform:none;opacity:.85;margin-top:2px;font-size:11px}
+  .dot{display:inline-block;width:26px;height:26px;border:2px solid var(--navy);border-radius:50%}
+  .note{margin-top:14px;font-size:15.5px;background:var(--tint);border-radius:16px;padding:16px 22px}
+  .note b{color:var(--navy)}
+
+  .brand{background:var(--navy);color:#fff;border-radius:26px;padding:30px 36px}
+  .brand .lbl{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#BFE6F5;margin-bottom:12px}
+  .brand .fx{font-size:27px;font-weight:700;line-height:1.9}
+  .brand .blank{display:inline-block;min-width:170px;border-bottom:3px solid #fff;margin:0 6px;height:1em;vertical-align:baseline}
+  .brand .ex{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.3);font-size:16px;opacity:.95}
+  .brand .ex b{color:#BFE6F5}
+  .map{display:grid;grid-template-columns:230px 1fr;border-radius:22px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+  .map .k{background:var(--navy);color:#fff;padding:18px 22px;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid rgba(255,255,255,.25);display:flex;align-items:center}
+  .map .v{padding:18px 24px;font-size:16px;border-bottom:1px solid var(--line);color:#4b6b7d;font-style:italic;display:flex;align-items:center}
+  .map .k:nth-last-child(2),.map .v:last-child{border-bottom:0}
+  .q{margin-top:8px;font-size:14px;font-weight:600;color:var(--navy);font-style:normal}
+  .gl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .gl .g{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:20px 16px}
+  .gl .g i{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--blue);color:#fff;font-weight:800;font-size:28px;font-style:normal;margin-bottom:12px}
+  .gl .g:nth-child(even) i{background:var(--navy)}
+  .gl .g h3{font-size:16px;font-weight:800;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+  .gl .g p{font-size:14px;line-height:1.4}
+  .gl .g em{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--navy);font-weight:600}
+</style>
+</head>
+<body><div class="page">
+  <div class="top">
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="tag">Lánzate · Proceso emprendedor</div>
+  </div>
+  <div class="hero">
+    <div class="wm" style="font-size:104px;top:14px;right:-10px">MARCA</div>
+    <h1 class="small">Marca personal<br><span>juvenil</span></h1>
+    <div class="rule"></div>
+    <p class="lead">Antes de que te conozcan por tu proyecto, te conocen a ti. <b>Tu marca personal es la imagen y la confianza que generas</b>, y se puede construir de forma consciente, sin postureo y sin necesidad de ser influencer.</p>
+  </div>
+
+  <section><h2>Para empezar</h2>
+    <div class="pills">
+      <div class="pill d"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div><div><div class="n">1997</div><div class="t">Tom Peters populariza la idea de «la marca llamada tú»*</div></div></div>
+      <div class="pill l"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg></div><div><div class="n">4 pilares</div><div class="t">identidad, propuesta de valor, presencia y coherencia</div></div></div>
+      <div class="pill l"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h14v12H9l-4 4z"/></svg></div><div><div class="n">1 frase</div><div class="t">que explique quién eres y qué aportas, en pocos segundos</div></div></div>
+      <div class="pill d"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></div><div><div class="n">Se construye</div><div class="t">con constancia: pequeñas acciones repetidas en el tiempo</div></div></div>
+    </div></section>
+
+  <section><h2>¿Qué es?</h2>
+    <div class="def"><div>
+      <p>Es lo que <b>otras personas piensan y dicen de ti</b> cuando no estás delante: tu reputación, tus valores y lo que se espera de ti. <b>Todas las personas tenemos marca personal</b>, la trabajemos o no.</p>
+      <p>Para quien emprende es clave: en las primeras etapas, <b>los clientes, colaboradores y entidades confían en la persona</b> antes que en un producto todavía desconocido.</p></div>
+      <div class="quote"><p>No se trata de parecer quien no eres, sino de comunicar con claridad quién eres y qué aportas.</p><small>Idea clave para recordar</small></div></div></section>
+
+  <section><h2>Los 4 pilares</h2>
+    <div class="gl">
+      <div class="g"><i>1</i><h3>Identidad</h3><p>Tus valores, fortalezas y forma de trabajar.</p><em>¿Qué me define y qué me importa?</em></div>
+      <div class="g"><i>2</i><h3>Propuesta de valor</h3><p>El problema que resuelves y para quién.</p><em>¿Por qué me elegirían a mí?</em></div>
+      <div class="g"><i>3</i><h3>Presencia</h3><p>Los canales donde te muestras: redes, web, eventos.</p><em>¿Dónde está mi público?</em></div>
+      <div class="g"><i>4</i><h3>Coherencia</h3><p>Lo que dices, lo que haces y cómo lo cuentas coinciden.</p><em>¿Me reconocerían en todos sitios?</em></div>
+    </div></section>
+
+  <section><h2>Tu frase de marca</h2>
+    <div class="brand"><div class="lbl">Completa tu frase</div>
+      <div class="fx">Ayudo a<span class="blank"></span>a<span class="blank"></span>mediante<span class="blank"></span></div>
+      <div class="ex"><b>Ejemplo:</b> «Ayudo a pequeños comercios rurales a vender online mediante tiendas web sencillas y formación a su ritmo.»</div></div></section>
+
+  <section><div class="two">
+      <div><h2>Revisa tu perfil</h2>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Foto clara y profesional, con tu cara visible</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Titular que diga qué haces y para quién</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Biografía con tu propuesta de valor</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Enlace a tu proyecto o contacto fácil de encontrar</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Mismo nombre y estilo en todas las redes</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#0090C0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Publicaciones alineadas con tu mensaje</li></ul></div>
+      <div><h2>Evítalo</h2>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="#006088" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg>Copiar el estilo de otras personas</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#006088" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg>Prometer lo que aún no puedes cumplir</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#006088" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg>Mezclar contenido personal y profesional sin criterio</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#006088" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg>Publicar sin una línea clara de contenido</li></ul></div>
+  </div></section>
+
+  <section><h2>4 pasos para construirla</h2>
+    <div class="steps">
+      <div class="step"><b>01</b><h3>Define</h3><p>Anota tus valores, fortalezas y a quién quieres llegar.</p></div>
+      <div class="step"><b>02</b><h3>Pule</h3><p>Escribe tu frase de marca y actualiza tus perfiles con ella.</p></div>
+      <div class="step"><b>03</b><h3>Comparte</h3><p>Publica contenido útil con regularidad: lo que aprendes y lo que haces.</p></div>
+      <div class="step"><b>04</b><h3>Mide y ajusta</h3><p>Pide feedback, mira qué conecta y corrige lo que no funcione.</p></div>
+    </div></section>
+
+  <div class="cta">
+    <div class="badge"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></div>
+    <div><h3>Ejercicio de esta semana</h3><p>Búscate en Google en una <b>ventana de incógnito</b> y anota qué aparece. Después, pide a tres personas que describan tu perfil profesional en tres palabras y compáralo con tu frase de marca.</p></div>
+  </div>
+  <footer>
+    <img src="assets/logo-fsmlr.png" alt="Fundación Santa María la Real">
+    <div class="src"><b>Material elaborado por personas voluntarias para el programa Lánzate.</b><br>*Peters, T. (1997), <i>The Brand Called You</i>, Fast Company.</div>
+  </footer>
+</div></body></html>
